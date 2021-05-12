@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.integral.mapper.IntegralMapper">
+    
+    <resultMap type="Integral" id="IntegralResult">
+        <result property="integralId"    column="integral_id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="userName"    column="user_name"    />
+        <result property="userPhone"    column="user_phone"    />
+        <result property="countIntegral"    column="count_integral"    />
+        <result property="delIntegral"    column="del_integral"    />
+        <result property="addIntegral"    column="add_integral"    />
+        <result property="typeId"    column="type_id"    />
+        <result property="postId"    column="post_id"    />
+        <result property="deptId"    column="dept_id"    />
+
+    </resultMap>
+	
+	<sql id="selectIntegralVo">
+ select integral_id, user_id, user_name, user_phone, count_integral, del_integral, add_integral, type_id, post_id, dept_id from integral
+    </sql>
+
+    <select id="selectIntegralList"  parameterType="Integral" resultMap="IntegralResult">
+        <include refid="selectIntegralVo"/>
+        <where>
+            <if test="integralId != null "> and integral_id = #{integralId}</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="userName != null  and userName != '' ">
+                AND user_name like concat('%', #{userName}, '%')
+            </if>
+            <if test="userPhone != null  and userPhone != '' "> and user_phone = #{userPhone}</if>
+            <if test="countIntegral != null "> and count_integral = #{countIntegral}</if>
+            <if test="delIntegral != null "> and del_integral = #{delIntegral}</if>
+            <if test="addIntegral != null "> and add_integral = #{addIntegral}</if>
+            <if test="typeId != null "> and type_id = #{typeId}</if>
+            <if test="postId != null "> and post_id = #{postId}</if>
+            <if test="deptId != null "> and dept_id = #{deptId}</if>
+        </where>
+    </select>
+
+    <select id="selectIntegralById" parameterType="Integer" resultMap="IntegralResult">
+        <include refid="selectIntegralVo"/>
+        where integral_id = #{integralId}
+    </select>
+
+    <insert id="insertIntegral" parameterType="Integral">
+        insert into integral
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="integralId != null  ">integral_id,</if>
+            <if test="userId != null  ">user_id,</if>
+            <if test="userName != null  and userName != ''  ">user_name,</if>
+            <if test="userPhone != null  and userPhone != ''  ">user_phone,</if>
+            <if test="countIntegral != null  ">count_integral,</if>
+            <if test="delIntegral != null  ">del_integral,</if>
+            <if test="addIntegral != null  ">add_integral,</if>
+            <if test="typeId != null  ">type_id,</if>
+            <if test="postId != null  ">post_id,</if>
+            <if test="deptId != null  ">dept_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="integralId != null  ">#{integralId},</if>
+            <if test="userId != null  ">#{userId},</if>
+            <if test="userName != null  and userName != ''  ">#{userName},</if>
+            <if test="userPhone != null  and userPhone != ''  ">#{userPhone},</if>
+            <if test="countIntegral != null  ">#{countIntegral},</if>
+            <if test="delIntegral != null  ">#{delIntegral},</if>
+            <if test="addIntegral != null  ">#{addIntegral},</if>
+            <if test="typeId != null  ">#{typeId},</if>
+            <if test="postId != null  ">#{postId},</if>
+            <if test="deptId != null  ">#{deptId},</if>
+        </trim>
+    </insert>
+
+    <update id="updateIntegral" parameterType="Integral">
+        update integral
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null  ">user_id = #{userId},</if>
+            <if test="userName != null  and userName != ''  ">user_name = #{userName},</if>
+            <if test="userPhone != null  and userPhone != ''  ">user_phone = #{userPhone},</if>
+            <if test="countIntegral != null  ">count_integral = #{countIntegral},</if>
+            <if test="delIntegral != null  ">del_integral = #{delIntegral},</if>
+            <if test="addIntegral != null  ">add_integral = #{addIntegral},</if>
+            <if test="typeId != null  ">type_id = #{typeId},</if>
+            <if test="postId != null  ">post_id = #{postId},</if>
+            <if test="deptId != null  ">dept_id = #{deptId},</if>
+        </trim>
+        where integral_id = #{integralId}
+    </update>
+
+    <delete id="deleteIntegralById" parameterType="Integer">
+        delete from integral where integral_id = #{integralId}
+    </delete>
+	
+    <delete id="deleteIntegralByIds" parameterType="String">
+        delete from integral where integral_id in 
+        <foreach item="integralId" collection="array" open="(" separator="," close=")">
+            #{integralId}
+        </foreach>
+    </delete>
+
+    <select id="selectUsernameAndPhone"   resultMap="IntegralResult" >
+        select integral_id, user_id, user_name, user_phone, count_integral, del_integral, add_integral, type_id from integral
+         WHERE  user_name = #{userName}  AND  user_phone = #{phone}
+    </select>
+
+    <!--根据用户名查询积分-->
+    <select id="selectUserName" resultMap="IntegralResult" >
+        <include refid="selectIntegralVo"/>
+          WHERE user_name = #{userName}
+    </select>
+    <!---->
+    <select id="selectByUserId" resultMap="IntegralResult" >
+        <include refid="selectIntegralVo"/>
+        WHERE user_id = #{id}
+    </select>
+</mapper>

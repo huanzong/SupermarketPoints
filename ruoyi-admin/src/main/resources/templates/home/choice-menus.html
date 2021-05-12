@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html style="overflow: hidden;">
+
+<head>
+    <meta charset="utf-8">
+    <title>商品兑换</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="css/icons-extra.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <!--标准mui.css-->
+    <link rel="stylesheet" type="text/css" href="css/mui.css"/>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="css/layer.css"/>
+    <style>
+        .u-flyer {
+            display: block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            position: fixed;
+            z-index: 9999;
+        }
+
+        .mui-row.mui-fullscreen > [class*="mui-col-"] {
+            height: 100%;
+        }
+
+        .mui-col-xs-3,
+        .mui-control-content {
+            overflow-y: auto;
+            height: 100%;
+        }
+
+        .mui-segmented-control .mui-control-item {
+            line-height: 50px;
+            width: 100%;
+        }
+
+        .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+            background-color: #DD524D;
+            color: white;
+            border-color: #DD524D;
+        }
+
+        /*上拉加载样式*/
+
+        .mui-pull-bottom-tips {
+            text-align: center;
+            background-color: #efeff4;
+            font-size: 15px;
+            line-height: 40px;
+            color: #777;
+        }
+
+        .mui-numbox .mui-numbox-input, .mui-numbox .mui-input-numbox {
+            border: none !important;
+            text-align: center;
+            padding-bottom: 8px !important;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="mui-bar mui-bar-nav">
+    <a href="choiceMenus" class=" mui-icon  mui-pull-left title-left">
+        <img src="img/AAA.png" width="120px" height="32px" style="margin-top: 6px;">
+    </a>
+    <h1 class="mui-title">商品兑换</h1>
+    <a href="personCenter" class="mui-icon  mui-pull-right title-right" id="btn1">
+        <img src="img/个人中心.png" width="60px" height="32px" style="margin-top: 6px;">
+    </a>
+</header>
+
+<div class="mui-content mui-row mui-fullscreen" style="padding: 0px 5px 120px 5px;">
+    <div class="mui-col-xs-3 menus-tab">
+        <div class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
+            <a class="mui-control-item mui-active" href="#content1">
+                生活用品
+                <!--<span class="mui-badge mui-badge-warning">3</span>-->
+            </a>
+            <a class="mui-control-item" href="#content2">饮料饮品</a>
+            <a class="mui-control-item" href="#content3">零食大全</a>
+            <a class="mui-control-item" href="#content4">学习工具</a>
+
+        </div>
+    </div>
+
+    <div class="mui-col-xs-9 choice-menus">
+        <div id="content1" class="mui-control-content  mui-active ">
+
+            <ul class="mui-scroll">
+                <li class="mui-table-view-cell">
+                    <img src="img/kkkkk.jpeg" onclick="showpop()">
+                    <p>
+                        <span class="menus-name">垃圾篓</span>
+                        <span class="menus-sales">已兑29</span>
+                    </p>
+
+                    <p class="menus-describe">精品绿色垃圾篓，要想生活过得去~~~~~~</p>
+                    <p class="menus-price">
+                        <span>13</span>/个
+                        <b>积分</b>
+                    </p>
+                    <!--<p class="menus-price">-->
+                        <!--<span>¥15</span>/份-->
+                    <!--</p>-->
+                    <div class="mui-numbox menus-numbox">
+                        <button class="mui-btn mui-btn-numbox-minus" type="button"></button>
+                        <input class="mui-input-numbox" type="number" readonly="readonly">
+                        <button class="mui-btn mui-btn-numbox-plus" type="button"></button>
+                    </div>
+                </li>
+                <li class="mui-table-view-cell">
+                    <img src="img/美食.jpg" onclick="showpop()">
+                    <p>
+                        <span class="menus-name">排骨腊味蒸饭1</span>
+                        <span class="menus-sales">已售29</span>
+                    </p>
+
+                    <p class="menus-describe">蒜香排骨+糯米饭</p>
+                    <p class="menus-price">
+                        <span>¥13</span>/份
+                        <b>会员价</b>
+                    </p>
+                    <p class="menus-price">
+                        <span>¥15</span>/份
+                    </p>
+                    <div class="mui-numbox menus-numbox">
+                        <button class="mui-btn mui-btn-numbox-minus" type="button"></button>
+                        <input class="mui-input-numbox" type="number" readonly="readonly">
+                        <button class="mui-btn mui-btn-numbox-plus" type="button"></button>
+                    </div>
+                </li>
+                <li class="mui-table-view-cell">
+                    <img src="img/排骨.jpg" / onclick="showpop()">
+                    <p>
+                        <span class="menus-name">排骨腊味蒸饭1</span>
+                        <span class="menus-sales">已售29</span>
+                    </p>
+
+                    <p class="menus-describe">蒜香排骨+糯米饭</p>
+                    <p class="menus-price">
+                        <span>¥13</span>/份
+                        <b>会员价</b>
+                    </p>
+                    <p class="menus-price">
+                        <span>¥15</span>/份
+                    </p>
+                    <div class="mui-numbox menus-numbox">
+                        <button class="mui-btn mui-btn-numbox-minus" type="button"></button>
+                        <input class="mui-input-numbox" type="number" readonly="readonly">
+                        <button class="mui-btn mui-btn-numbox-plus" type="button"></button>
+                    </div>
+                </li>
+                <li class="mui-table-view-cell">
+                    <img src="img/美食.jpg" / onclick="showpop()">
+                    <p>
+                        <span class="menus-name">排骨腊味蒸饭1</span>
+                        <span class="menus-sales">已售29</span>
+                    </p>
+
+                    <p class="menus-describe">蒜香排骨+糯米饭</p>
+                    <p class="menus-price">
+                        <span>¥13</span>/份
+                        <b>会员价</b>
+                    </p>
+                    <p class="menus-price">
+                        <span>¥15</span>/份
+                    </p>
+                    <div class="mui-numbox menus-numbox">
+                        <button class="mui-btn mui-btn-numbox-minus" type="button"></button>
+                        <input class="mui-input-numbox" type="number" readonly="readonly">
+                        <button class="mui-btn mui-btn-numbox-plus" type="button"></button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="content2" class="mui-control-content mui-scroll-wrapper">
+            <ul class="mui-scroll">
+                <li class="mui-table-view-cell">
+                    <img src="img/排骨.jpg" / onclick="showpop()">
+                    <p>
+                        <span class="menus-name">排骨腊味蒸饭1</span>
+                        <span class="menus-sales">已售29</span>
+                    </p>
+
+                    <p class="menus-describe">蒜香排骨+糯米饭</p>
+                    <p class="menus-price">
+                        <span>¥13</span>/份
+                        <b>会员价</b>
+                    </p>
+                    <p class="menus-price">
+                        <span>¥15</span>/份
+                    </p>
+                    <div class="mui-numbox menus-numbox">
+                        <button class="mui-btn mui-btn-numbox-minus" type="button"></button>
+                        <input class="mui-input-numbox" type="number" readonly="readonly">
+                        <button class="mui-btn mui-btn-numbox-plus" type="button"></button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="content3" class="mui-control-content mui-scroll-wrapper">
+            <ul class="mui-scroll">
+                <li class="mui-table-view-cell">
+                    <img src="img/美食.jpg" / onclick="showpop()">
+                    <p>
+                        <span class="menus-name">排骨腊味蒸饭1</span>
+                        <span class="menus-sales">已售29</span>
+                    </p>
+
+                    <p class="menus-describe">蒜香排骨+糯米饭</p>
+                    <p class="menus-price">
+                        <span>¥13</span>/份
+                        <b>会员价</b>
+                    </p>
+                    <p class="menus-price">
+                        <span>¥15</span>/份
+                    </p>
+                    <div class="mui-numbox menus-numbox">
+                        <button class="mui-btn mui-btn-numbox-minus" type="button"></button>
+                        <input class="mui-input-numbox" type="number" readonly="readonly">
+                        <button class="mui-btn mui-btn-numbox-plus" type="button"></button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="content4" class="mui-control-content mui-scroll-wrapper">
+            <ul>
+                <li class="mui-table-view-cell">
+                    商品制作中。。。
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--购物车-->
+    <div class="shoppingCart cart" id="shoppingCart">
+        <i id="end"></i>
+        <div class="w">
+            <div class="shoppingCart-res">
+                <img src="img/cart.png"/>
+                <span class="num">3</span>
+            </div>
+            <span>共3份，39积分</span>
+            <a href="order-takeout.html" class="shoppingCart-sureBtn">
+                去兑换
+            </a>
+            <!--<a href="###" class="shoppingCart-notsureBtn">
+                未选择
+            </a>-->
+        </div>
+    </div>
+    <!-- 购物车-vei -->
+    <div class="cart-container js-cart-container">
+        <div class="cart-view">
+            <div class="w">
+                <div class="cart-header">
+                    <p class="cart-title">购物车</p>
+                    <p class="trash-btn js-trash-btn"><span class="mui-icon mui-icon-trash"></span>清空</span>
+                    </p>
+                </div>
+                <div class="cart-list">
+                    <ul>
+                        <li>
+                            <span class="cart-list-name">排骨腊味饭</span>
+                            <span class="cart-list-price">¥13</span>
+                            <div class="mui-numbox cart-list-numbox">
+                                <button class="mui-btn mui-btn-numbox-minus" type="button"></button>
+                                <input class="mui-input-numbox" type="number" readonly="readonly">
+                                <button class="mui-btn mui-btn-numbox-plus" type="button"></button>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="cart-list-name">排骨腊味饭</span>
+                            <span class="cart-list-price">¥13</span>
+                            <div class="mui-numbox cart-list-numbox">
+                                <button class="mui-btn mui-btn-numbox-minus" type="button"></button>
+                                <input class="mui-input-numbox" type="number" readonly="readonly">
+                                <button class="mui-btn mui-btn-numbox-plus" type="button"></button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--弹出框-->
+    <div id="popup" style="display: none;">
+        <div class="z-popup">
+            <div class="z-popup-top">
+                <img id="pp_imgurl" src="img/排骨.jpg">
+                <span id="pp_tt">排骨腊味饭</span>
+            </div>
+            <div class="z-popup-bottom">
+                <strong class="z-popup-bottom-name" id="pp_tt2"></strong>
+                <p class="menus-price">
+                    <span>¥13</span>/份
+                    <b>会员价</b>
+                </p>
+                <p class="menus-price">
+                    <span>¥15</span>/份
+                </p>
+                <p>
+                    <span class="f-price-z" id="noramt"></span>
+                </p>
+
+                <a href="###" id="add_btn_pop">
+                    <span class="z-popup-bottom-car" style="">加入购物车</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-2.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+<!--小球动画代码-->
+<script src="js/jquery_002.js" type="text/javascript" charset="utf-8"></script>
+<!--弹出框-->
+<script src="js/layer.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    //下拉阻尼系数
+    var deceleration = mui.os.ios ? 0.003 : 0.0009;
+    //调整菜单位置
+
+    mui('.mui-scroll-wrapper').scroll({
+        bounce: false,
+        indicators: false, //是否显示滚动条
+        deceleration: deceleration
+    });
+    var menusheight = document.documentElement.clientHeight || document.body.clientHeight;
+    var menus = document.getElementsByClassName('choice-menus');
+    for (var i = 0; i < menus.length; i++) {
+
+        menus[i].style.height = menusheight + 'px';
+    }
+    // 点击增加按钮
+    $('.mui-btn-numbox-plus').click(function () {
+        var shoppingCart = $("#shoppingCart");
+        var a = parseInt($(this).siblings(".mui-input-numbox").val());
+        $(this).siblings(".mui-btn-numbox-minus").show();
+        $(this).siblings(".mui-input-numbox").show();
+        $(this).siblings(".mui-input-numbox").val(a);
+    });
+    // 点击减少按钮
+    $('.mui-btn-numbox-minus').click(function () {
+        var a = parseInt($(this).siblings(".mui-input-numbox").val());
+        if (a <= 0) {
+
+            $(this).hide();
+
+            $(this).siblings(".mui-input-numbox").hide();
+        }
+
+    });
+    // 清理购物车按钮
+    $('.js-trash-btn').click(function () {
+        $('.js-cart-container').toggle();
+        $(".mui-input-numbox").val(0).hide();
+        $(".mui-btn-numbox-minus").hide();
+        //	    $('#shoppingCart').animate({
+        //	        'bottom': '-6rem'
+        //	    }, 200)
+    })
+</script>
+<!--点击增加按钮，小球动画-->
+<script>
+    $('.mui-btn-numbox-plus').on('click', addProduct);
+
+    function addProduct(event) {
+        var offset = $('#end').offset(),
+            flyer = $('<img class="u-flyer" src="img/1.png"/>');
+        flyer.fly({
+            start: {
+                left: event.pageX,
+                top: event.pageY,
+            },
+            end: {
+                left: offset.left + 35,
+                top: offset.top + 35,
+                width: 0,
+                height: 0
+            }
+        });
+    }
+
+    // 点击购物车,弹出面板
+    $('.shoppingCart-res').click(function () {
+        $('.js-cart-container').toggle();
+    });
+    $('.js-cart-container').click(function (event) {
+        if (event.target.className == 'cart-container js-cart-container') {
+            $('.js-cart-container').toggle();
+        } else {
+            return;
+        }
+    });
+</script>
+<!--弹出框-->
+<script type="text/javascript">
+    function showpop(obj) {
+
+//		$("#pp_imgurl").attr("src",$("#ssp_img_"+obj).val()); 
+//	 	
+//		$("#pp_tt").html($("#spname_" + obj).html()); 
+//		$("#pp_tt2").html($("#spname_" + obj).html());  
+//		
+//		$("#vipamt").html($("#provipamt_"+obj).html()); 
+//		$("#noramt").html($("#proamt_"+obj).html()); 
+//		 
+//		$("#add_btn_pop").attr("onclick","proadd("+obj+",1)"); 
+        layer.open({
+            type: 1,
+            title: false,
+            area: ['90%', '400px'],
+            content: $('#popup')
+        });
+    }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>我的订单</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="css/icons-extra.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <!--标准mui.css-->
+    <link rel="stylesheet" href="css/mui.css">
+    <style>
+        .mui-card .mui-control-content {
+            padding: 10px;
+        }
+
+        .mui-control-content {
+        }
+    </style>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a href="choiceMenus" class=" mui-icon  mui-pull-left title-left">
+        <img src="img/AAA.png" width="100px" height="32px" style="margin-top: 6px;">
+    </a>
+    <h1 class="mui-title">我的订单</h1>
+    <a href="personCenter" class="mui-icon  mui-pull-right title-right" id="btn1">
+        <img src="img/个人中心.png" width="60px" height="32px" style="margin-top: 6px;">
+    </a>
+</header>
+<div class="mui-content">
+    <div>
+        <div id="segmentedControl" class="mui-segmented-control">
+            <a class="mui-control-item mui-active" href="#item1">
+                消费记录
+            </a>
+            <a class="mui-control-item" href="#item2">
+                兑换记录
+            </a>
+        </div>
+    </div>
+    <div>
+        <div id="item1" class="mui-control-content  mui-active">
+            <div id="scroll" class="mui-scroll-wrapper">
+                <div class="mui-scroll myorder-list">
+                    <ul>
+                        <li>
+                            <div class="myorder-list-top">
+                                <span class="myorder-num">编号：20170807103002222</span>
+                                <span class="myorder-state">已消费</span>
+                                <p class="myorder-time">消费时间：2021-05-07 10:30</p>
+                            </div>
+                            <div class="myorder-list-mid">
+                                <ul>
+                                    <li>
+                                        <span class="order-list-name">牙刷1个/杯子一个/啤酒五瓶</span>
+                                        <span class="order-list-price">¥23.00</span>
+                                        <!--<span class="order-list-number">X1</span>-->
+                                    </li>
+                                    <li>
+                                        <span class="order-list-name">可兑换积分：</span>
+                                        <span class="order-list-price">23</span>
+                                    </li>
+                                    <li>
+                                        <span class="order-list-name">积分兑换状态：</span>
+                                        <!--<span class="order-list-price">¥23.00</span>-->
+                                        <span class="order-list-number">未兑换</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="myorder-list-foot">
+                                <p class="right">
+                                    总计：<span>23元</span>
+                                </p>
+                                <button type="button" class="mui-btn mui-btn-danger mui-btn-outlined">兑换积分</button>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="item2" class="mui-control-content myorder-list">
+            <div id="scroll1" class="mui-scroll-wrapper">
+                <div class="mui-scroll myorder-list">
+                    <ul>
+                        <li>
+                            <div class="myorder-list-top">
+                                <span class="myorder-num">编号：20170807103002222</span>
+                                <span class="myorder-state">已兑换</span>
+                                <p class="myorder-time">下单时间：2021-05-07 10:30</p>
+                            </div>
+                            <div class="myorder-list-mid">
+                                <ul>
+                                    <li>
+                                        <span class="order-list-name">抱枕</span>
+                                        <span class="order-list-price">积分：3</span>
+                                        <span class="order-list-number">X1</span>
+                                    </li>
+
+                                    <li>
+                                        <span class="order-list-name">单个积分</span>
+                                        <span class="order-list-price">3</span>
+                                    </li>
+                                    <li>
+                                        <span class="order-list-name">总积分</span>
+                                        <span class="order-list-price">3</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="myorder-list-foot">
+                                <p class="right">
+                                    总计：<span>13积分</span>
+                                </p>
+                                <!--<a href="order-details.html">-->
+                                    <!--<button type="button" class="mui-btn mui-btn-blue">订单详情</button>-->
+                                <!--</a>-->
+                                <!--<a href="comment.html">-->
+                                    <!--<button type="button" class="mui-btn mui-btn-danger">填写评价</button>-->
+                                <!--</a>-->
+                            </div>
+                        </li>
+                        <li>
+                            <div class="myorder-list-top">
+                                <span class="myorder-num">编号：20170807103002222</span>
+                                <span class="myorder-state">已兑换</span>
+                                <p class="myorder-time">下单时间：2021-05-07 10:30</p>
+                            </div>
+                            <div class="myorder-list-mid">
+                                <ul>
+                                    <li>
+                                        <span class="order-list-name">牙刷</span>
+                                        <span class="order-list-price">¥13.00</span>
+                                        <span class="order-list-number">X1</span>
+                                    </li>
+
+                                    <li>
+                                        <span class="order-list-name">单个积分</span>
+                                        <span class="order-list-price">3</span>
+                                    </li>
+                                    <li>
+                                        <span class="order-list-name">总积分</span>
+                                        <span class="order-list-price">3</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="myorder-list-foot">
+                                <p class="right">
+                                    总计：<span>13积分</span>
+                                </p>
+                                <!--<a href="order-details.html">-->
+                                    <!--<button type="button" class="mui-btn mui-btn-blue">订单详情</button>-->
+                                <!--</a>-->
+                                <!--<a href="comment.html">-->
+                                    <!--<button type="button" class="mui-btn mui-btn-danger">填写评价</button>-->
+                                <!--</a>-->
+                            </div>
+                        </li>
+                        <li>
+                            <div class="myorder-list-top">
+                                <span class="myorder-num">编号：20170807103002222</span>
+                                <span class="myorder-state">已兑换</span>
+                                <p class="myorder-time">下单时间：2021-05-07 10:30</p>
+                            </div>
+                            <div class="myorder-list-mid">
+                                <ul>
+                                    <li>
+                                        <span class="order-list-name">牙刷</span>
+                                        <span class="order-list-price">¥13.00</span>
+                                        <span class="order-list-number">X1</span>
+                                    </li>
+
+                                    <li>
+                                        <span class="order-list-name">单个积分</span>
+                                        <span class="order-list-price">3</span>
+                                    </li>
+                                    <li>
+                                        <span class="order-list-name">总积分</span>
+                                        <span class="order-list-price">3</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="myorder-list-foot">
+                                <p class="right">
+                                    总计：<span>积分</span>
+                                </p>
+                                <!--<button type="button" class="mui-btn mui-btn-grey">已评价</button>-->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script src="js/mui.min.js"></script>
+<script>
+
+    (function ($) {
+        $('#scroll').scroll({
+            indicators: false //是否显示滚动条
+        });
+        $('#scroll1').scroll({
+            indicators: false //是否显示滚动条
+        });
+    })(mui);
+    var myorderheight = document.documentElement.clientHeight || document.body.clientHeight;
+    var my = document.getElementsByClassName('mui-control-content');
+    for (var i = 0; i < my.length; i++) {
+        my[i].style.height = myorderheight - 120 + 'px';
+    }
+
+</script>
+
+</body>
+
+</html>

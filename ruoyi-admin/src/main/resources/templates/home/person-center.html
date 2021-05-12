@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<style type="text/css">
+
+</style>
+<head>
+    <meta charset="utf-8">
+    <title>个人中心</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!--标准mui.css-->
+    <link href="css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/icons-extra.css}"/>
+</head>
+
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a href="choiceMenus" class=" mui-icon  mui-pull-left title-left">
+        <img src="img/AAA.png" width="100px" height="32px" style="margin-top: 6px;">
+    </a>
+    <h1 class="mui-title">个人中心</h1>
+    <a href="personCenter" class="mui-icon  mui-pull-right title-right" id="btn1">
+        <img src="img/个人中心.png" width="60px" height="32px" style="margin-top: 6px;">
+    </a>
+    <!--<a href="personCenter" class="mui-icon  mui-pull-right title-right" id="btn2">-->
+        <!--<img src="img/qiandao.jpeg" width="120px" height="32px" style="margin-top: 6px;">-->
+    <!--</a>-->
+</header>
+<div class="mui-content">
+    <div class="person-top ">
+        <img src="img/logo1.jpg"/>
+        <span style="color: #0C0C0C">星小宇</span>
+    </div>
+    <div class="person-mid">
+        <div class="person-mid-money">
+            <span>¥0</span>
+            <span>余额</span>
+        </div>
+        <div class="go-payment">
+            <a href="payment.html">
+                <button type="button" class="mui-btn mui-btn-danger">
+                    去充值
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="person-mid" style="border-top: dashed 1px">
+        <div class="person-mid-money">
+            <span>30</span>
+            <span>积分</span>
+        </div>
+        <div class="go-payment">
+            <a href="payment.html">
+                <button type="button" class="mui-btn mui-btn-success">
+                    签到
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="person-list">
+        <ul class="mui-table-view mui-table-view-chevron">
+            <li class="mui-table-view-cell mui-media">
+                <a href="personCenterMessage" class="mui-navigate-right">
+                    <img class="mui-media-object mui-pull-left" src="img/个人信息.png">
+                    <span>个人信息</span>
+                </a>
+            </li>
+            <li class="mui-table-view-cell mui-media">
+                <a href="personOrder" class="mui-navigate-right">
+                    <img class="mui-media-object mui-pull-left" src="img/我的订单.png">
+                    <span>订单信息</span>
+                </a>
+            </li>
+            <li class="mui-table-view-cell mui-media">
+                <a href="personCenterRecord" class="mui-navigate-right">
+                    <img class="mui-media-object mui-pull-left" src="img/充值记录.png">
+                    <span>充值记录</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<script th:src="@{js/mui.min.js}"></script>
+</body>
+
+</html>

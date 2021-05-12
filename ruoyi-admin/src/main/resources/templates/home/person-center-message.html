@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+	
+</style>
+	<head>
+		<meta charset="utf-8">
+		<title>个人信息</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		
+		<!--标准mui.css-->
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/icons-extra.css"/>
+	</head>
+
+	<body >
+		<header class="mui-bar mui-bar-nav">
+			<a href="choiceMenus" class=" mui-icon  mui-pull-left title-left">
+		        	<img src="img/AAA.png" width="100px" height="32px" style="margin-top: 6px;">
+			</a>
+			<h1 class="mui-title">个人信息</h1>
+			<a href="personCenter" class="mui-icon  mui-pull-right title-right" id="btn1">
+				<img src="img/个人中心.png" width="60px" height="32px" style="margin-top: 6px;">
+			</a>
+		</header>
+		<div class="mui-content">
+			<div class="message">
+				<ul class="mui-table-view">
+		   	        <li class="mui-table-view-cell" style="height: 60px;padding-top: 10px;">
+		   	            <lable>头像</lable> 
+		   	            <img id="img" src="img/logo1.jpg"/>
+		   	        </li>
+		   	        <li class="mui-table-view-cell">
+		   	           	<lable>名称</lable> 
+		   	           	<input type="text" placeholder="" class="input" value="星小宇"/>
+		   	        </li>
+		   	        <li class="mui-table-view-cell ">
+		   	        		<lable>性别</lable> 
+		   	           	<!--<input id="sex"  type="text" disabled="true" class="input" value="男"/>-->
+		   	           	<select dir="rtl" style="width: 80%;float: right;margin: 0px;padding: 0px;">
+		   	           		<option value="男">男</option>
+		   	           		<option value="女">女</option>
+		   	           	</select>
+		   	        </li>
+		   	        
+		   	    </ul>
+		   	    <ul class="mui-table-view" style="margin-top: 15px;">
+		   	        
+		   	       <li class="mui-table-view-cell">
+		   	           	<lable>会员卡号</lable> 
+		   	           	<input id="sex"  type="text" disabled="true" class="input" value="14369707"/>
+		   	        </li>
+		   	        <li class="mui-table-view-cell">
+		   	           	<lable>入会时间</lable> 
+		   	           	<input id="time"  type="text" disabled="true" class="input" value="2021-05-04"/>
+		   	        </li>
+		   	    </ul>
+			</div>
+			<button type="button" class="mui-btn mui-btn-danger mui-btn-block" style="margin: 50px auto;width: 70%;padding: 5px;">保存</button>
+		</div>
+		<script src="js/mui.min.js"></script>
+	</body>
+
+</html>
