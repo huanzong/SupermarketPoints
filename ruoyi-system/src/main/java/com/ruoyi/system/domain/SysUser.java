@@ -118,7 +118,7 @@ public class SysUser extends BaseEntity {
     private Long[] postIds;
 
     /**
-     * 积分
+     * 余额
      */
     private Integer integral;
 

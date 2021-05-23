@@ -237,6 +237,7 @@ public class ShiroConfig {
         // 不需要拦截的访问
         filterChainDefinitionMap.put("/login", "anon,captchaValidate");
         filterChainDefinitionMap.put("/home/**", "anon");
+        filterChainDefinitionMap.put("/person/**", "anon");
         // 系统权限列表
         // filterChainDefinitionMap.putAll(SpringUtils.getBean(IMenuService.class).selectPermsAll());
 

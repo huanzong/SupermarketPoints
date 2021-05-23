@@ -10,6 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
     /**
+     * 跳转个人中心登录页面
+     *
+     * @param mmap
+     * @return
+     */
+    @GetMapping("/login")
+    public String login(ModelMap mmap) {
+
+        return "home/index";
+    }
+
+    /**
      * 跳转个人中心页面
      *
      * @param mmap
