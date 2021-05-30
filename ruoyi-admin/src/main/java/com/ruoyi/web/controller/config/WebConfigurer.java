@@ -17,6 +17,7 @@ public class WebConfigurer implements WebMvcConfigurer {
         includePathLists.add("/home/**");
         includePathLists.add("/person/**");
         List<String> excludePathLists = new ArrayList<>();
+        excludePathLists.add("/person/login");
         excludePathLists.add("/home/login");
         excludePathLists.add("/home/css/**");
         excludePathLists.add("/home/js/**");
