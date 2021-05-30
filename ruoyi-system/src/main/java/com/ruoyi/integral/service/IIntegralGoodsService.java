@@ -17,7 +17,7 @@ public interface IIntegralGoodsService
      * @param goodId 商品管理ID
      * @return 商品管理信息
      */
-	public IntegralGoods selectIntegralGoodsById(Integer goodId);
+	IntegralGoods selectIntegralGoodsById(Integer goodId);
 	
 	/**
      * 查询商品管理列表
@@ -25,7 +25,7 @@ public interface IIntegralGoodsService
      * @param integralGoods 商品管理信息
      * @return 商品管理集合
      */
-	public List<IntegralGoods> selectIntegralGoodsList(IntegralGoods integralGoods);
+	List<IntegralGoods> selectIntegralGoodsList(IntegralGoods integralGoods);
 	
 	/**
      * 新增商品管理

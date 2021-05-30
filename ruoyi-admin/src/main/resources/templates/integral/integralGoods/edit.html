@@ -17,20 +17,31 @@
                     </div>
                 </div>
             </div>
-            <div class="layui-upload form-group">
-                <label class="col-sm-3 control-label">商品轮播图：</label>
-                <div class="col-sm-8">
-                    <button type="button" class="layui-btn" id="test2">多图片上传</button>
-                    <input id="goodLbImg" name="goodLbImg" th:field="*{goodLbImg}" class="form-control"type="hidden" >
-                    <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
-                        <div class="layui-upload-list" id="demo2"></div>
-                    </blockquote>
-                </div>
-            </div>
+            <!--<div class="layui-upload form-group">-->
+                <!--<label class="col-sm-3 control-label">商品轮播图：</label>-->
+                <!--<div class="col-sm-8">-->
+                    <!--<button type="button" class="layui-btn" id="test2">多图片上传</button>-->
+                    <!--<input id="goodLbImg" name="goodLbImg" th:field="*{goodLbImg}" class="form-control"type="hidden" >-->
+                    <!--<blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">-->
+                        <!--<div class="layui-upload-list" id="demo2"></div>-->
+                    <!--</blockquote>-->
+                <!--</div>-->
+            <!--</div>-->
             <div class="form-group">	
                 <label class="col-sm-3 control-label">商品名称：</label>
                 <div class="col-sm-8">
                     <input id="goodName" name="goodName" th:field="*{goodName}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">商品类别：</label>
+                <div class="col-sm-8">
+                    <select id="type" th:field="*{type}" name="type" class="form-control m-b">
+                        <option th:selected="${type=='生活用品'}" value="生活用品">生活用品</option>
+                        <option th:selected="${type=='饮料饮品'}" value="饮料饮品">饮料饮品</option>
+                        <option th:selected="${type=='零食大全'}" value="零食大全">零食大全</option>
+                        <option th:selected="${type=='学习工具'}" value="学习工具">学习工具</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">	
@@ -134,6 +145,7 @@
             var goodName = $("input[name='goodName']").val();
             var goodKc = $("input[name='goodKc']").val();
             var ydhNum = $("input[name='ydhNum']").val();
+            var type = $("#type").val();
             var dhIntegral = $("input[name='dhIntegral']").val();
             var goodLbImg = $("input[name='goodLbImg']").val();
             var goodDetails = $("input[name='goodDetails']").val();
@@ -149,6 +161,7 @@
                 data : {
                     "goodId": goodId,
                     "goodName":goodName,
+                    "type":type,
                     "goodKc": goodKc,
                     "ydhNum": ydhNum,
                     "dhIntegral": dhIntegral,

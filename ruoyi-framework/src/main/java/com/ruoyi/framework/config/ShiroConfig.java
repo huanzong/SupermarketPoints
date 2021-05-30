@@ -239,6 +239,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/home/**", "anon");
         filterChainDefinitionMap.put("/person/**", "anon");
         filterChainDefinitionMap.put("/integral/**", "anon");
+        filterChainDefinitionMap.put("/profile/**", "anon");
         // 系统权限列表
         // filterChainDefinitionMap.putAll(SpringUtils.getBean(IMenuService.class).selectPermsAll());
 

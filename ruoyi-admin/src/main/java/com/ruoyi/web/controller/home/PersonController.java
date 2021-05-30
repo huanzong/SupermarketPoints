@@ -6,14 +6,15 @@ import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.framework.web.page.TableDataInfo;
+import com.ruoyi.integral.domain.IntegralGoods;
 import com.ruoyi.integral.domain.SysRecharge;
+import com.ruoyi.integral.service.IIntegralGoodsService;
 import com.ruoyi.integral.service.ISysRechargeService;
 import com.ruoyi.integral.service.ISysSignInService;
 import com.ruoyi.system.domain.SysSignIn;
 import com.ruoyi.system.domain.SysUser;
 import com.ruoyi.system.service.ISysUserService;
 import com.ruoyi.web.core.base.BaseController;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,6 +41,9 @@ public class PersonController extends BaseController {
 
     @Autowired
     private ISysRechargeService sysRechargeService;
+
+    @Autowired
+    private IIntegralGoodsService integralGoodsService;
 
 
     @PostMapping(value = "login")
@@ -107,6 +111,18 @@ public class PersonController extends BaseController {
         return getDataTable(list);
     }
 
+    /**
+     * 查询商品管理列表
+     */
+    @PostMapping("/goodList")
+    @ResponseBody
+    public TableDataInfo list(String type) {
+        IntegralGoods integralGoods = new IntegralGoods();
+        integralGoods.setType(type);
+        startPage();
+        List<IntegralGoods> list = integralGoodsService.selectIntegralGoodsList(integralGoods);
+        return getDataTable(list);
+    }
 
 
     /**
@@ -114,7 +130,7 @@ public class PersonController extends BaseController {
      */
     @PostMapping("/savePerson")
     @ResponseBody
-    public AjaxResult savePerson(SysUser sysUser,HttpServletRequest request) {
+    public AjaxResult savePerson(SysUser sysUser, HttpServletRequest request) {
 
         SysUser sysUser1 = (SysUser) request.getSession().getAttribute("USER");
         if (null == sysUser1) {
