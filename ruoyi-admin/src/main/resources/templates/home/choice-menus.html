@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html style="overflow: hidden;">
-
+<html style="overflow: hidden;" lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>商品兑换</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="stylesheet" type="text/css" href="css/icons-extra.css"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/home/css/icons-extra.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/home/css/style.css}"/>
     <!--标准mui.css-->
-    <link rel="stylesheet" type="text/css" href="css/mui.css"/>
-    <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
-    <link rel="stylesheet" type="text/css" href="css/layer.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/home/css/mui.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/home/css/normalize.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/home/css/layer.css}"/>
     <style>
         .u-flyer {
             display: block;
@@ -66,11 +65,11 @@
 
 <header class="mui-bar mui-bar-nav">
     <a href="choiceMenus" class=" mui-icon  mui-pull-left title-left">
-        <img src="img/AAA.png" width="120px" height="32px" style="margin-top: 6px;">
+        <img th:src="@{/home/img/AAA.png}" width="120px" height="32px" style="margin-top: 6px;">
     </a>
     <h1 class="mui-title">商品兑换</h1>
     <a href="personCenter" class="mui-icon  mui-pull-right title-right" id="btn1">
-        <img src="img/个人中心.png" width="60px" height="32px" style="margin-top: 6px;">
+        <img th:src="@{/home/img/个人中心.png}" width="60px" height="32px" style="margin-top: 6px;">
     </a>
 </header>
 
@@ -93,7 +92,7 @@
 
             <ul class="mui-scroll">
                 <li class="mui-table-view-cell">
-                    <img src="img/kkkkk.jpeg" onclick="showpop()">
+                    <img th:src="@{/home/img/kkkkk.jpeg}" onclick="showpop()">
                     <p>
                         <span class="menus-name">垃圾篓</span>
                         <span class="menus-sales">已兑29</span>
@@ -114,7 +113,7 @@
                     </div>
                 </li>
                 <li class="mui-table-view-cell">
-                    <img src="img/美食.jpg" onclick="showpop()">
+                    <img th:src="@{/home/img/美食.jpg}" onclick="showpop()">
                     <p>
                         <span class="menus-name">排骨腊味蒸饭1</span>
                         <span class="menus-sales">已售29</span>
@@ -135,7 +134,7 @@
                     </div>
                 </li>
                 <li class="mui-table-view-cell">
-                    <img src="img/排骨.jpg" / onclick="showpop()">
+                    <img th:src="@{/home/img/排骨.jpg}" / onclick="showpop()">
                     <p>
                         <span class="menus-name">排骨腊味蒸饭1</span>
                         <span class="menus-sales">已售29</span>
@@ -156,7 +155,7 @@
                     </div>
                 </li>
                 <li class="mui-table-view-cell">
-                    <img src="img/美食.jpg" / onclick="showpop()">
+                    <img th:src="@{/home/img/美食.jpg}"  onclick="showpop()">
                     <p>
                         <span class="menus-name">排骨腊味蒸饭1</span>
                         <span class="menus-sales">已售29</span>
@@ -181,7 +180,7 @@
         <div id="content2" class="mui-control-content mui-scroll-wrapper">
             <ul class="mui-scroll">
                 <li class="mui-table-view-cell">
-                    <img src="img/排骨.jpg" / onclick="showpop()">
+                    <img th:src="@{/home/img/排骨.jpg}"  onclick="showpop()">
                     <p>
                         <span class="menus-name">排骨腊味蒸饭1</span>
                         <span class="menus-sales">已售29</span>
@@ -206,7 +205,7 @@
         <div id="content3" class="mui-control-content mui-scroll-wrapper">
             <ul class="mui-scroll">
                 <li class="mui-table-view-cell">
-                    <img src="img/美食.jpg" / onclick="showpop()">
+                    <img th:src="@{/home/img/美食.jpg}"  onclick="showpop()">
                     <p>
                         <span class="menus-name">排骨腊味蒸饭1</span>
                         <span class="menus-sales">已售29</span>
@@ -241,7 +240,7 @@
         <i id="end"></i>
         <div class="w">
             <div class="shoppingCart-res">
-                <img src="img/cart.png"/>
+                <img th:src="@{/home/img/cart.png}"/>
                 <span class="num">3</span>
             </div>
             <span>共3份，39积分</span>
@@ -292,7 +291,7 @@
     <div id="popup" style="display: none;">
         <div class="z-popup">
             <div class="z-popup-top">
-                <img id="pp_imgurl" src="img/排骨.jpg">
+                <img id="pp_imgurl" th:src="@{/home/img/排骨.jpg}">
                 <span id="pp_tt">排骨腊味饭</span>
             </div>
             <div class="z-popup-bottom">
@@ -316,12 +315,12 @@
     </div>
 </div>
 
-<script src="js/mui.min.js"></script>
-<script src="js/jquery-2.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/home/js/mui.min.js}"></script>
+<script th:src="@{/home/js/jquery-2.0.0.min.js}" type="text/javascript" charset="utf-8"></script>
 <!--小球动画代码-->
-<script src="js/jquery_002.js" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/home/js/jquery_002.js}" type="text/javascript" charset="utf-8"></script>
 <!--弹出框-->
-<script src="js/layer.js" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/home/js/layer.js}" type="text/javascript" charset="utf-8"></script>
 <script>
     //下拉阻尼系数
     var deceleration = mui.os.ios ? 0.003 : 0.0009;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <style type="text/css">
 	
 </style>
@@ -11,19 +11,19 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		
 		<!--标准mui.css-->
-		<link href="css/mui.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="css/style.css"/>
-		<link rel="stylesheet" type="text/css" href="css/icons-extra.css"/>
+		<link th:href="@{/home/css/mui.css}" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" th:href="@{/home/css/style.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/home/css/icons-extra.css}"/>
 	</head>
 
 	<body >
 		<header class="mui-bar mui-bar-nav">
 			<a href="choiceMenus" class=" mui-icon  mui-pull-left title-left">
-		        	<img src="img/AAA.png" width="100px" height="32px" style="margin-top: 6px;">
+		        	<img th:src="@{/home/img/AAA.png}" width="100px" height="32px" style="margin-top: 6px;">
 			</a>
 			<h1 class="mui-title">个人信息</h1>
 			<a href="personCenter" class="mui-icon  mui-pull-right title-right" id="btn1">
-				<img src="img/个人中心.png" width="60px" height="32px" style="margin-top: 6px;">
+				<img th:src="@{/home/img/个人中心.png}" width="60px" height="32px" style="margin-top: 6px;">
 			</a>
 		</header>
 		<div class="mui-content">
@@ -31,7 +31,7 @@
 				<ul class="mui-table-view">
 		   	        <li class="mui-table-view-cell" style="height: 60px;padding-top: 10px;">
 		   	            <lable>头像</lable> 
-		   	            <img id="img" src="img/logo1.jpg"/>
+		   	            <img id="img" th:src="@{/home/img/logo1.jpg}"/>
 		   	        </li>
 		   	        <li class="mui-table-view-cell">
 		   	           	<lable>名称</lable> 
@@ -61,7 +61,7 @@
 			</div>
 			<button type="button" class="mui-btn mui-btn-danger mui-btn-block" style="margin: 50px auto;width: 70%;padding: 5px;">保存</button>
 		</div>
-		<script src="js/mui.min.js"></script>
+		<script th:src="@{/home/js/mui.min.js}"></script>
 	</body>
 
 </html>
