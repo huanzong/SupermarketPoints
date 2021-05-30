@@ -150,6 +150,7 @@
     <update id="updateUser" parameterType="com.ruoyi.system.domain.SysUser">
         update sys_user
         <set>
+            <if test="jiChuIntegral != null and jiChuIntegral != ''">ji_chu_integral = #{jiChuIntegral},</if>
             <if test="deptId != null and deptId != 0">dept_id = #{deptId},</if>
             <if test="loginName != null and loginName != ''">login_name = #{loginName},</if>
             <if test="userName != null and userName != ''">user_name = #{userName},</if>
@@ -165,7 +166,6 @@
             <if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
             <if test="remark != null and remark != ''">remark = #{remark},</if>
             <if test="integral != null and integral != ''">integral = #{integral},</if>
-            <if test="jiChuIntegral != null and jiChuIntegral != ''">ji_chu_integral = #{jiChuIntegral},</if>
             <if test="biaoIntegral != null and biaoIntegral != ''">biao_integral = #{biaoIntegral},</if>
             <if test="loveIntegral != null and loveIntegral != ''">love_integral = #{loveIntegral},</if>
             <if test="integralStatus != null and integralStatus != ''">integral_status = #{integralStatus},</if>

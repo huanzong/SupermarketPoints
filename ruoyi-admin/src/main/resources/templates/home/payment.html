@@ -1,75 +1,120 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="utf-8">
-		<title>会员充值</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		
-		<!--标准mui.css-->
-		<link th:href="@{/home/css/mui.css}" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" th:href="@{/home/css/style.css}"/>
-		<link rel="stylesheet" type="text/css" th:href="@{/home/css/icons-extra.css}"/>
-	</head>
+<head>
+    <meta charset="utf-8">
+    <title>会员充值</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-	<body>
-		<header class="mui-bar mui-bar-nav">
-			<a href="choiceMenus" class=" mui-icon  mui-pull-left title-left">
-		        	<img th:src="@{/home/img/AAA.png}" width="60px" height="32px" style="margin-top: 6px;">
-			</a>
-			<h1 class="mui-title">会员充值</h1>
-			<a href="personCenter" class="mui-icon  mui-pull-right title-right" id="btn1">
-				<img th:src="@{/home/img/个人中心.png}" width="60px" height="32px" style="margin-top: 6px;">
-			</a>
-		</header>
-		<div class="mui-content">
-			<div class="pay">
-		   	 	<span>您当前余额：¥10</span>
-		   	 	<ul class="mui-table-view mui-table-view-radio">
-					<li class="mui-table-view-cell">
-						<a class="mui-navigate-right" >
-							50元
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-selected">
-						<a class="mui-navigate-right">
-							100元
-						</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a class="mui-navigate-right">
-							150元
-						</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a class="mui-navigate-right">
-							200元
-						</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a class="mui-navigate-right">
-							250元
-						</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a class="mui-navigate-right">
-							300元
-						</a>
-					</li>
-				</ul>
-				<span>总需支付：<b> ¥50</b></span>
-				<a href="paymentSuccess">
-					 <button type="button" class="mui-btn mui-btn-danger mui-btn-block" >确认支付</button>
-				</a>
-				
-				 <p>温馨提示：
-		    	高峰时期可能会稍迟到账，如长时间未到账可联系：1111111
-		    </p>
-		    </div>
-		    
-		</div>
-		<script th:src="@{/home/js/mui.min.js}"></script>
-	</body>
+    <!--标准mui.css-->
+    <link th:href="@{/home/css/mui.css}" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/home/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/home/css/icons-extra.css}"/>
+</head>
+
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a href="choiceMenus" class=" mui-icon  mui-pull-left title-left">
+        <img th:src="@{/home/img/AAA.png}" width="60px" height="32px" style="margin-top: 6px;">
+    </a>
+    <h1 class="mui-title">会员充值</h1>
+    <a href="personCenter" class="mui-icon  mui-pull-right title-right" id="btn1">
+        <img th:src="@{/home/img/个人中心.png}" width="60px" height="32px" style="margin-top: 6px;">
+    </a>
+</header>
+<div class="mui-content">
+    <div class="pay">
+        <span>您当前余额：¥10</span>
+        <ul class="mui-table-view mui-table-view-radio">
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right">
+                    50元
+                </a>
+            </li>
+            <li class="mui-table-view-cell mui-selected">
+                <a class="mui-navigate-right">
+                    100元
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right">
+                    150元
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right">
+                    200元
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right">
+                    250元
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right">
+                    300元
+                </a>
+            </li>
+        </ul>
+        <span id="totlePrice" totlePrice="100">总需支付：<b id="price"> ¥100</b></span>
+        <a href="javascript:;">
+            <button type="button" onclick="zhifu()" class="mui-btn mui-btn-danger mui-btn-block">确认支付</button>
+        </a>
+
+        <p>温馨提示：
+            高峰时期可能会稍迟到账，如长时间未到账可联系：1111111
+        </p>
+    </div>
+
+</div>
+<script type="text/javascript" th:src="@{/home/js/jquery-2.1.4.min.js}"></script>
+<script th:src="@{/home/js/mui.min.js}"></script>
+<script>
+    $(".mui-table-view-cell").click(function () {
+        var price = $(this).children(".mui-navigate-right").text();
+        if (price == null || price == '') {
+            alert('选择有误！');
+            return false;
+        }
+        price = price.replace('元', '');
+        $("#totlePrice").attr("totlePrice", price);
+        $("#price").text("¥" + price)
+    })
+
+
+    function zhifu() {
+        var price = $("#totlePrice").attr("totlePrice");
+        if (price == null || price == '') {
+            alert("请选择充值金额！");
+            return false;
+        }
+        $.ajax({
+            type: "post",
+            url: "/integral/sysRecharge/add",
+            data: {
+                "money": price
+            },
+            async: true, // 异步请求
+            cache: false, // 设置为 false 将不缓存此页面
+            dataType: 'json', // 返回对象
+            success: function (data) {
+                console.log(data);
+                if (data != null && data.code == 0) {
+                    window.location.href = '/person/paymentSuccess'
+                } else {
+                    alert("充值失败");
+                }
+            },
+            error: function (data) {
+                // 请求失败函数
+                console.log(data);
+            }
+        })
+    }
+</script>
+</body>
 
 </html>

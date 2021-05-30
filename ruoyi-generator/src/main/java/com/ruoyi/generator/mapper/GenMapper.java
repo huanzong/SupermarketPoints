@@ -17,7 +17,7 @@ public interface GenMapper
      * @param tableInfo 表信息
      * @return 数据库表列表
      */
-    public List<TableInfo> selectTableList(TableInfo tableInfo);
+    List<TableInfo> selectTableList(TableInfo tableInfo);
 
     /**
      * 根据表名称查询信息

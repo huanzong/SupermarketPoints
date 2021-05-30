@@ -17,6 +17,7 @@ import com.ruoyi.system.mapper.SysDeptMapper;
 import com.ruoyi.system.mapper.SysPostMapper;
 import com.ruoyi.system.mapper.SysUserMapper;
 import com.ruoyi.system.mapper.SysUserPostMapper;
+import com.ruoyi.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,6 @@ import java.util.List;
 
 /**
  * 积分奖扣 服务层实现
- *
  *
  * @date 2021-10-25
  */
@@ -50,6 +50,9 @@ public class IntegralJkServiceImpl implements IIntegralJkService {
     private SysUserPostMapper sysUserPostMapper;
     @Autowired
     private SysPostMapper sysPostMapper;
+
+    @Autowired
+    private ISysUserService iSysUserService;
 
 
     /**
@@ -140,6 +143,7 @@ public class IntegralJkServiceImpl implements IIntegralJkService {
      */
     @Override
     public int insertIntegralUserList(IntegralJk integralJk) {
+        Integer total = 0;
         /** 所用的员工的 ids*/
         String[] ids = integralJk.getIds().split(",");
         for (String id : ids) {
@@ -188,8 +192,11 @@ public class IntegralJkServiceImpl implements IIntegralJkService {
             //添加积分奖扣
             int integralNum = integralJkMapper.insertIntegralJk(jk);
 
+            total = integral.getCountIntegral();
+
+
         }
-        return 1;
+        return total;
     }
 
     /**
@@ -197,7 +204,7 @@ public class IntegralJkServiceImpl implements IIntegralJkService {
      *
      * @return 结果
      */
-	/*@Override
+    /*@Override
 	public List<Map<String, String>> jkNameGroup() {
 		Map<String, Object> map = new HashMap<>();
 

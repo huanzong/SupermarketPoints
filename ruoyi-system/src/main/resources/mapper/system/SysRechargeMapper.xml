@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.integral.mapper.SysRechargeMapper">
+    
+    <resultMap type="SysRecharge" id="SysRechargeResult">
+        <result property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="money"    column="money"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+	
+	<sql id="selectSysRechargeVo">
+        select id, user_id, money, create_time from sys_recharge
+    </sql>
+	
+    <select id="selectSysRechargeList" parameterType="SysRecharge" resultMap="SysRechargeResult">
+        <include refid="selectSysRechargeVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+             <if test="userId != null "> and user_id = #{userId}</if>
+             <if test="money != null "> and money = #{money}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+         </where>
+    </select>
+    
+    <select id="selectSysRechargeById" parameterType="Integer" resultMap="SysRechargeResult">
+        <include refid="selectSysRechargeVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertSysRecharge" parameterType="SysRecharge">
+        insert into sys_recharge
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  ">id,</if>
+			<if test="userId != null  ">user_id,</if>
+			<if test="money != null  ">money,</if>
+			<if test="createTime != null  ">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  ">#{id},</if>
+			<if test="userId != null  ">#{userId},</if>
+			<if test="money != null  ">#{money},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateSysRecharge" parameterType="SysRecharge">
+        update sys_recharge
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null  ">user_id = #{userId},</if>
+            <if test="money != null  ">money = #{money},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+	<delete id="deleteSysRechargeById" parameterType="Integer">
+        delete from sys_recharge where id = #{id}
+    </delete>
+	
+    <delete id="deleteSysRechargeByIds" parameterType="String">
+        delete from sys_recharge where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>
