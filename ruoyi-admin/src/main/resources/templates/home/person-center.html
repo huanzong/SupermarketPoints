@@ -27,7 +27,7 @@
         <img th:src="@{/home/img/个人中心.png}" width="60px" height="32px" style="margin-top: 6px;">
     </a>
     <!--<a href="personCenter" class="mui-icon  mui-pull-right title-right" id="btn2">-->
-        <!--<img src="img/qiandao.jpeg" width="120px" height="32px" style="margin-top: 6px;">-->
+    <!--<img src="img/qiandao.jpeg" width="120px" height="32px" style="margin-top: 6px;">-->
     <!--</a>-->
 </header>
 <div class="mui-content">
@@ -50,7 +50,7 @@
     </div>
     <div class="person-mid" style="border-top: dashed 1px">
         <div class="person-mid-money">
-            <span th:text="${'¥'+session.USER.jiChuIntegral}">30</span>
+            <span id="shengyu" th:text="${'¥'+session.USER.jiChuIntegral}">30</span>
             <span>积分</span>
         </div>
         <div class="go-payment">
@@ -87,6 +87,14 @@
 <script th:src="@{/home/js/mui.min.js}"></script>
 <script type="text/javascript" th:src="@{/home/js/jquery-2.1.4.min.js}"></script>
 <script>
+
+    $(function () {
+        var aa = $("#shengyu").text();
+        if (aa != null && aa != "") {
+            alert("尊敬的用户，您还有" + aa + "积分，请及时兑换商品！")
+        }
+    })
+
     function qiandao() {
 
         $.ajax({

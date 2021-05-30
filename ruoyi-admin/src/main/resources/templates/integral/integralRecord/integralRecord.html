@@ -53,7 +53,7 @@
 					title : '记录商品名称' 
 				},
 				{
-					field : 'recordImg', 
+					field : 'recordImg',
 					title : '记录商品封面',
                     formatter: function(value, row, index) {
                         if (value) {
@@ -83,46 +83,47 @@
 					field : 'dhCreateTime', 
 					title : '兑换时间' 
 				},
-				{
-					field : 'shTime', 
-					title : '审核时间' 
-				},
-				{
-					field : 'status', 
-					title : '状态',
-                    formatter: function (value) {
-                        switch (value) {
-                            case 0: return '<span class="badge badge-danger">未审批</span>';
-                            case 1: return '<span class="badge badge-info">已通过</span>';
-                            case 2: return '<span class="badge badge-success">未通过</span>';
-                        }
-                    }
-				},
+//				{
+//					field : 'shTime',
+//					title : '审核时间'
+//				},
+//				{
+//					field : 'status',
+//					title : '状态',
+//                    formatter: function (value) {
+//                        switch (value) {
+//                            case 0: return '<span class="badge badge-danger">未审批</span>';
+//                            case 1: return '<span class="badge badge-info">已通过</span>';
+//                            case 2: return '<span class="badge badge-success">未通过</span>';
+//                        }
+//                    }
+//				},
 				/*{
 					field : 'gId', 
 					title : '商品id' 
 				},*/
-				{
-					field : 'remark', 
-					title : '备注' 
-				},
-		        {
-		            title: '操作',
-		            align: 'center',
-		            formatter: function(value, row, index) {
-		            	var actions = [];
-		            	if (row.status == 0) {
-                            // actions.push('<a class="btn btn-primary btn-xs ' + editFlag + '" href="#" onclick="$.operate.edit(\'' + row.recordId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-                            // actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="$.operate.remove(\'' + row.recordId + '\')"><i class="fa fa-remove"></i>删除</a>');
-                            actions.push('<a class="btn btn-primary btn-xs ' + successYes + '" href="#" onclick="$.operate.approval(\'' + row.recordId + '\',1)"><i class="fa fa-key"></i>审批通过</a> ');
-                            actions.push('<a class="btn btn-success btn-xs ' + successYes + '" href="#" onclick="$.operate.approval(\'' + row.recordId + '\',2)"><i class="fa fa-key"></i>审批不过</a> ');
-                        } else {
-                            actions.push('<a class="btn btn-primary btn-xs disabled' + successYes + '" href="#" onclick="$.operate.approval(\'' + row.recordId + '\',1)"><i class="fa fa-key"></i>审批通过</a> ');
-                            actions.push('<a class="btn btn-success btn-xs disabled' + successYes + '" href="#" onclick="$.operate.approval(\'' + row.recordId + '\',2)"><i class="fa fa-key"></i>审批不过</a> ');
-                        }
-						return actions.join('');
-		            }
-		        }]
+//				{
+//					field : 'remark',
+//					title : '备注'
+//				},
+//		        {
+//		            title: '操作',
+//		            align: 'center',
+//		            formatter: function(value, row, index) {
+//		            	var actions = [];
+//		            	if (row.status == 0) {
+//                            // actions.push('<a class="btn btn-primary btn-xs ' + editFlag + '" href="#" onclick="$.operate.edit(\'' + row.recordId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+//                            // actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="$.operate.remove(\'' + row.recordId + '\')"><i class="fa fa-remove"></i>删除</a>');
+//                            actions.push('<a class="btn btn-primary btn-xs ' + successYes + '" href="#" onclick="$.operate.approval(\'' + row.recordId + '\',1)"><i class="fa fa-key"></i>审批通过</a> ');
+//                            actions.push('<a class="btn btn-success btn-xs ' + successYes + '" href="#" onclick="$.operate.approval(\'' + row.recordId + '\',2)"><i class="fa fa-key"></i>审批不过</a> ');
+//                        } else {
+//                            actions.push('<a class="btn btn-primary btn-xs disabled' + successYes + '" href="#" onclick="$.operate.approval(\'' + row.recordId + '\',1)"><i class="fa fa-key"></i>审批通过</a> ');
+//                            actions.push('<a class="btn btn-success btn-xs disabled' + successYes + '" href="#" onclick="$.operate.approval(\'' + row.recordId + '\',2)"><i class="fa fa-key"></i>审批不过</a> ');
+//                        }
+//						return actions.join('');
+//		            }
+//		        }
+                ]
             };
             $.table.init(options);
         });

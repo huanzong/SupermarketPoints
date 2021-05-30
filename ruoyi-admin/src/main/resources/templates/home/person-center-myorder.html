@@ -85,7 +85,7 @@
         <div id="item2" class="mui-control-content myorder-list">
             <div id="scroll1" class="mui-scroll-wrapper">
                 <div class="mui-scroll myorder-list">
-                    <ul>
+                    <ul class="duihuan">
                         <li>
                             <div class="myorder-list-top">
                                 <span class="myorder-num">编号：20170807103002222</span>
@@ -114,12 +114,6 @@
                                 <p class="right">
                                     总计：<span>13积分</span>
                                 </p>
-                                <!--<a href="order-details.html">-->
-                                    <!--<button type="button" class="mui-btn mui-btn-blue">订单详情</button>-->
-                                <!--</a>-->
-                                <!--<a href="comment.html">-->
-                                    <!--<button type="button" class="mui-btn mui-btn-danger">填写评价</button>-->
-                                <!--</a>-->
                             </div>
                         </li>
                         <li>
@@ -131,8 +125,8 @@
                             <div class="myorder-list-mid">
                                 <ul>
                                     <li>
-                                        <span class="order-list-name">牙刷</span>
-                                        <span class="order-list-price">¥13.00</span>
+                                        <span class="order-list-name">抱枕</span>
+                                        <span class="order-list-price">积分：3</span>
                                         <span class="order-list-number">X1</span>
                                     </li>
 
@@ -150,43 +144,6 @@
                                 <p class="right">
                                     总计：<span>13积分</span>
                                 </p>
-                                <!--<a href="order-details.html">-->
-                                    <!--<button type="button" class="mui-btn mui-btn-blue">订单详情</button>-->
-                                <!--</a>-->
-                                <!--<a href="comment.html">-->
-                                    <!--<button type="button" class="mui-btn mui-btn-danger">填写评价</button>-->
-                                <!--</a>-->
-                            </div>
-                        </li>
-                        <li>
-                            <div class="myorder-list-top">
-                                <span class="myorder-num">编号：20170807103002222</span>
-                                <span class="myorder-state">已兑换</span>
-                                <p class="myorder-time">下单时间：2021-05-07 10:30</p>
-                            </div>
-                            <div class="myorder-list-mid">
-                                <ul>
-                                    <li>
-                                        <span class="order-list-name">牙刷</span>
-                                        <span class="order-list-price">¥13.00</span>
-                                        <span class="order-list-number">X1</span>
-                                    </li>
-
-                                    <li>
-                                        <span class="order-list-name">单个积分</span>
-                                        <span class="order-list-price">3</span>
-                                    </li>
-                                    <li>
-                                        <span class="order-list-name">总积分</span>
-                                        <span class="order-list-price">3</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="myorder-list-foot">
-                                <p class="right">
-                                    总计：<span>积分</span>
-                                </p>
-                                <!--<button type="button" class="mui-btn mui-btn-grey">已评价</button>-->
                             </div>
                         </li>
                     </ul>
@@ -198,6 +155,7 @@
 
 </div>
 <script th:src="@{/home/js/mui.min.js}"></script>
+<script th:src="@{/home/js/jquery-2.0.0.min.js}" type="text/javascript" charset="utf-8"></script>
 <script>
 
     (function ($) {
@@ -213,6 +171,68 @@
     for (var i = 0; i < my.length; i++) {
         my[i].style.height = myorderheight - 120 + 'px';
     }
+
+</script>
+<script>
+    $(function () {
+        $.ajax({
+            type: "post",
+            url: "/person/duihuan",
+            async: true, // 异步请求
+            cache: false, // 设置为 false 将不缓存此页面
+            dataType: 'json', // 返回对象
+            success: function (data) {
+                console.log(data);
+                if (data != null && data.code == 0) {
+                    if (data.rows.length > 0) {
+                        var html = '';
+                        for (var i = 0; i < data.rows.length; i++) {
+                            var info = data.rows[i];
+                            html += '<li>\n' +
+                                '                            <div class="myorder-list-top">\n' +
+                                '                                <span class="myorder-num">编号：' + info.recordId + '</span>\n' +
+                                '                                <span class="myorder-state">已兑换</span>\n' +
+                                '                                <p class="myorder-time">下单时间：' + info.dhCreateTime + '</p>\n' +
+                                '                            </div>\n' +
+                                '                            <div class="myorder-list-mid">\n' +
+                                '                                <ul>\n' +
+                                '                                    <li>\n' +
+                                '                                        <span class="order-list-name">' + info.recordName + '</span>\n' +
+                                '                                        <span class="order-list-price">积分：' + info.dhIntegral + '</span>\n' +
+                                '                                        <span class="order-list-number">X1</span>\n' +
+                                '                                    </li>\n' +
+                                '\n' +
+                                '                                    <li>\n' +
+                                '                                        <span class="order-list-name">剩余总积分</span>\n' +
+                                '                                        <span class="order-list-price">' + info.syIntegral + '</span>\n' +
+                                '                                    </li>\n' +
+                                '                                </ul>\n' +
+                                '                            </div>\n' +
+                                '                            <div class="myorder-list-foot">\n' +
+                                '                                <p class="right">\n' +
+                                '                                    总计：<span>' + info.dhIntegral + '积分</span>\n' +
+                                '                                </p>\n' +
+                                '                            </div>\n' +
+                                '                        </li>'
+
+
+                        }
+                        $(".duihuan").html("")
+                        $(".duihuan").html(html)
+                    } else {
+
+                    }
+                } else {
+                    alert(data.msg)
+                }
+            },
+            error: function (data) {
+                // 请求失败函数
+                console.log(data);
+            }
+        })
+    })
+
 
 </script>
 

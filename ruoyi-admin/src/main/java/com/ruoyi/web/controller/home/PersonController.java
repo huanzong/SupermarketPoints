@@ -7,8 +7,10 @@ import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.integral.domain.IntegralGoods;
+import com.ruoyi.integral.domain.IntegralRecord;
 import com.ruoyi.integral.domain.SysRecharge;
 import com.ruoyi.integral.service.IIntegralGoodsService;
+import com.ruoyi.integral.service.IIntegralRecordService;
 import com.ruoyi.integral.service.ISysRechargeService;
 import com.ruoyi.integral.service.ISysSignInService;
 import com.ruoyi.system.domain.SysSignIn;
@@ -44,6 +46,9 @@ public class PersonController extends BaseController {
 
     @Autowired
     private IIntegralGoodsService integralGoodsService;
+
+    @Autowired
+    private IIntegralRecordService iIntegralRecordService;
 
 
     @PostMapping(value = "login")
@@ -110,6 +115,72 @@ public class PersonController extends BaseController {
         List<SysSignIn> list = sysSignInService.selectSysSignInList(sysSignIn);
         return getDataTable(list);
     }
+
+    /**
+     * 兑换记录查询
+     */
+    @PostMapping("/duihuan")
+    @ResponseBody
+    public TableDataInfo duihuan(HttpServletRequest request) {
+        SysUser sysUser = (SysUser) request.getSession().getAttribute("USER");
+        if (null == sysUser) {
+            TableDataInfo tableDataInfo = new TableDataInfo();
+            tableDataInfo.setCode(500);
+            return tableDataInfo;
+        }
+        startPage();
+        IntegralRecord integralRecord = new IntegralRecord();
+        integralRecord.setUserId(Integer.parseInt(String.valueOf(sysUser.getUserId())));
+        List<IntegralRecord> list = iIntegralRecordService.selectIntegralRecordList(integralRecord);
+        return getDataTable(list);
+    }
+
+
+    /**
+     * 商品兑换
+     */
+    @PostMapping("/change")
+    @ResponseBody
+    public AjaxResult change(Integer productId, HttpServletRequest request) {
+        SysUser sysUser = (SysUser) request.getSession().getAttribute("USER");
+        if (null == sysUser) {
+            return AjaxResult.error(500, "失败");
+        }
+        IntegralGoods integralGoods = integralGoodsService.selectIntegralGoodsById(productId);
+        if (null == integralGoods) {
+            return AjaxResult.error(500, "失败");
+        }
+        if(integralGoods.getDhIntegral()>sysUser.getJiChuIntegral()){
+            return AjaxResult.error(500, "积分不足");
+        }
+        integralGoods.setGoodKc(integralGoods.getGoodKc() - 1);
+        if (!StringUtils.isEmpty(integralGoods.getGoodCount())) {
+            int count = Integer.parseInt(integralGoods.getGoodCount()) + 1;
+            integralGoods.setGoodCount(String.valueOf(count));
+        } else {
+            integralGoods.setGoodCount("1");
+        }
+        integralGoodsService.updateIntegralGoods(integralGoods);
+
+        IntegralRecord integralRecord = new IntegralRecord();
+        integralRecord.setRecordName(integralGoods.getGoodName());
+        integralRecord.setRecordImg(integralGoods.getGoodImg());
+        integralRecord.setDhIntegral(integralGoods.getDhIntegral());
+        integralRecord.setUserName(sysUser.getUserName());
+        integralRecord.setUserId(Integer.parseInt(String.valueOf(sysUser.getUserId())));
+        integralRecord.setUserPhone(Long.parseLong(sysUser.getPhonenumber()));
+        int sy = sysUser.getJiChuIntegral() - integralGoods.getDhIntegral();
+        integralRecord.setSyIntegral(sy);
+        integralRecord.setDhCreateTime(new Date());
+        integralRecord.setgId(integralGoods.getGoodId());
+        integralRecord.setDeptId(Integer.parseInt(String.valueOf(sysUser.getDeptId())));
+        integralRecord.setDeptName(sysUser.getDept().getDeptName());
+        iIntegralRecordService.insertIntegralRecord(integralRecord);
+        sysUser.setJiChuIntegral(sy);
+        userService.updateUserInfo(sysUser);
+        return AjaxResult.success("成功");
+    }
+
 
     /**
      * 查询商品管理列表

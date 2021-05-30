@@ -90,43 +90,59 @@
     <div class="mui-col-xs-9 choice-menus">
         <div id="content1" class="mui-control-content  mui-active ">
 
-            <ul class="mui-scroll" id="shyp">
-
+            <ul class="mui-scroll aaa" id="shyp">
+                <!--<li class="mui-table-view-cell">-->
+                <!--<img th:src="@{/home/img/kkkkk.jpeg}" onclick="showpop()">-->
+                <!--<p>-->
+                <!--<span class="menus-name">垃圾篓</span>-->
+                <!--<span class="menus-sales">已兑29</span>-->
+                <!--</p>-->
+                <!--<p class="menus-describe">精品绿色垃圾篓，要想生活过得去~~~~~~</p>-->
+                <!--<p class="menus-price">-->
+                <!--<span>13</span>/个-->
+                <!--<b>积分</b>-->
+                <!--</p>-->
+                <!--<div class="mui-numbox menus-numbox">-->
+                <!--<button class="mui-btn mui-btn-numbox-minus" type="button"></button>-->
+                <!--<input class="mui-input-numbox" type="number" readonly="readonly">-->
+                <!--<button class="mui-btn mui-btn-numbox-plus" type="button"></button>-->
+                <!--</div>-->
+                <!--</li>-->
             </ul>
         </div>
         <div id="content2" class="mui-control-content mui-scroll-wrapper">
-            <ul class="mui-scroll" id="ylyp">
+            <ul class="mui-scroll aaa" id="ylyp">
 
             </ul>
         </div>
         <div id="content3" class="mui-control-content mui-scroll-wrapper">
-            <ul class="mui-scroll" id="lsdq">
+            <ul class="mui-scroll  aaa" id="lsdq">
 
             </ul>
         </div>
         <div id="content4" class="mui-control-content mui-scroll-wrapper">
-            <ul class="mui-scroll" id="xxgj">
+            <ul class="mui-scroll aaa" id="xxgj">
 
             </ul>
         </div>
     </div>
     <!--购物车-->
-    <div class="shoppingCart cart" id="shoppingCart">
-        <i id="end"></i>
-        <div class="w">
-            <div class="shoppingCart-res">
-                <img th:src="@{/home/img/cart.png}"/>
-                <span class="num">3</span>
-            </div>
-            <span>共3份，39积分</span>
-            <a href="order-takeout.html" class="shoppingCart-sureBtn">
-                去兑换
-            </a>
-            <!--<a href="###" class="shoppingCart-notsureBtn">
-                未选择
-            </a>-->
-        </div>
-    </div>
+    <!--<div class="shoppingCart cart" id="shoppingCart">-->
+    <!--<i id="end"></i>-->
+    <!--<div class="w">-->
+    <!--<div class="shoppingCart-res">-->
+    <!--<img th:src="@{/home/img/cart.png}"/>-->
+    <!--<span class="num">3</span>-->
+    <!--</div>-->
+    <!--<span>共3份，39积分</span>-->
+    <!--<a href="order-takeout.html" class="shoppingCart-sureBtn">-->
+    <!--去兑换-->
+    <!--</a>-->
+    <!--&lt;!&ndash;<a href="###" class="shoppingCart-notsureBtn">-->
+    <!--未选择-->
+    <!--</a>&ndash;&gt;-->
+    <!--</div>-->
+    <!--</div>-->
     <!-- 购物车-vei -->
     <div class="cart-container js-cart-container">
         <div class="cart-view">
@@ -137,7 +153,7 @@
                     </p>
                 </div>
                 <div class="cart-list">
-                    <ul>
+                    <ul class="aaa cartList">
                         <li>
                             <span class="cart-list-name">排骨腊味饭</span>
                             <span class="cart-list-price">¥13</span>
@@ -213,20 +229,129 @@
         menus[i].style.height = menusheight + 'px';
     }
     // 点击增加按钮
-    $('.mui-btn-numbox-plus').click(function () {
+    $('.aaa').on('click', '.mui-btn-numbox-plus', function () {
         var shoppingCart = $("#shoppingCart");
-        var a = parseInt($(this).siblings(".mui-input-numbox").val());
+        var number = $(this).siblings(".mui-input-numbox").val();
+        if (number == null || number == "") {
+            number = '0';
+        }
+        var a = parseInt(number);
+        if (a == null || a == "") {
+            a = 1;
+        } else {
+            a += 1;
+        }
         $(this).siblings(".mui-btn-numbox-minus").show();
         $(this).siblings(".mui-input-numbox").show();
         $(this).siblings(".mui-input-numbox").val(a);
+        $(this).siblings(".mui-input-numbox").attr("count", a);
+
+        var productName = $(this).siblings(".mui-input-numbox").attr("productName");
+        var jifen = $(this).siblings(".mui-input-numbox").attr("jifen");
+        var count = $(this).siblings(".mui-input-numbox").attr("count");
+        var productId = $(this).siblings(".mui-input-numbox").attr("bb");
+
+        var pp = getCookie("aaaa");
+        if (pp != null && pp != "") {
+            var aa = pp.split("@");
+            for (var i = 0; i < aa.length; i++) {
+                var bb = aa[i];
+                if (bb == null || bb == "") {
+                    continue;
+                }
+                var cc = bb.split("*")
+                if (cc.size() < 3) {
+                    continue;
+                }
+                var productName = cc[0];
+                var productName = cc[0];
+                var productName = cc[0];
+            }
+        } else {
+            setCookies("aaaa", productName + "*" + count + "*" + jifen + "@", 0)
+        }
+
+        document.cookie = "productName=" + productName + ";expires=evalue; path=pvalue; domain=dvalue; secure;”
+
+
+        var html = ' <li class="product" bb="' + productId + '">\n' +
+            '                            <span class="cart-list-name">' + productName + '</span>\n' +
+            '                            <span class="cart-list-price">¥' + jifen + '</span>\n' +
+            '                            <div class="mui-numbox cart-list-numbox">\n' +
+            '                                <button class="mui-btn mui-btn-numbox-minus" type="button"></button>\n' +
+            '                                <input class="mui-input-numbox" value="' + count + '" type="number" readonly="readonly">\n' +
+            '                                <button class="mui-btn mui-btn-numbox-plus" type="button"></button>\n' +
+            '                            </div>\n' +
+            '                        </li>'
+
+        var flag = 0;
+        $(".cartList li").each(function () {
+            var bb = $(this).attr("bb");
+            if (bb == productId) {
+                var aa = $(this).children(".mui-input-numbox").val();
+                var a = parseInt(aa);
+                a += count;
+                $(this).children(".mui-input-numbox").val(a)
+                flag = 1;
+            }
+        })
+        if (flag == 0) {
+            $(".cartList").append(html);
+        }
+
+
     });
+
+
+    //设置 cookie
+    function setCookie(objName, objValue, objHours) {//添加cookie
+        var str = objName + "=" + encodeURIComponent(objValue);
+        if (objHours > 0) {//为0时不设定过期时间，浏览器关闭时cookie自动消失
+            var date = new Date();
+            var ms = objHours * 3600 * 1000;
+            date.setTime(date.getTime() + ms);
+            str += "; expires=" + date.toUTCString();
+        }
+        document.cookie = str;
+
+    }
+
+    //获取 cookie
+    function getCookie(objName) {//获取指定名称的cookie的值
+        //多个cookie 保存的时候是以 ;空格  分开的
+        var arrStr = document.cookie.split("; ");
+        for (var i = 0; i < arrStr.length; i++) {
+            var temp = arrStr[i].split("=");
+            if (temp[0] == objName) {
+                return decodeURIComponent(temp[1]);
+            } else {
+                return "";
+            }
+
+        }
+    }
+
+    //为了删除指定名称的cookie，可以将其过期时间设定为一个过去的时间
+    function delCookie(name) {
+        var date = new Date();
+        date.setTime(date.getTime() - 10000);
+        document.cookie = name + "=a; expires=" + date.toUTCString();
+    }
+
+
     // 点击减少按钮
-    $('.mui-btn-numbox-minus').click(function () {
-        var a = parseInt($(this).siblings(".mui-input-numbox").val());
-        if (a <= 0) {
-
+    $('.aaa').on('click', '.mui-btn-numbox-minus', function () {
+        var number = $(this).siblings(".mui-input-numbox").val();
+        if (number == null || number == "") {
             $(this).hide();
-
+            $(this).siblings(".mui-input-numbox").hide();
+            return;
+        }
+        var a = parseInt(number);
+        a -= 1;
+        $(this).siblings(".mui-input-numbox").val(a)
+        if (a <= 0) {
+            $(this).hide();
             $(this).siblings(".mui-input-numbox").hide();
         }
 
@@ -243,7 +368,10 @@
 </script>
 <!--点击增加按钮，小球动画-->
 <script>
-    $('.mui-btn-numbox-plus').on('click', addProduct);
+    $('#shyp').on('click', '.mui-btn-numbox-plus', addProduct);
+    $('#ylyp').on('click', '.mui-btn-numbox-plus', addProduct);
+    $('#lsdq').on('click', '.mui-btn-numbox-plus', addProduct);
+    $('#xxgj').on('click', '.mui-btn-numbox-plus', addProduct);
 
     function addProduct(event) {
         var offset = $('#end').offset(),
@@ -334,10 +462,11 @@
                                 '                        <span>' + info.dhIntegral + '</span>\n' +
                                 '                        <b>积分</b>\n' +
                                 '                    </p>\n' +
-                                '                    <div class="mui-numbox menus-numbox">\n' +
-                                '                        <button class="mui-btn mui-btn-numbox-minus" type="button"></button>\n' +
-                                '                        <input class="mui-input-numbox" type="number" readonly="readonly">\n' +
-                                '                        <button class="mui-btn mui-btn-numbox-plus" type="button"></button>\n' +
+                                '                    <div class="mui-numbox menus-numbox" >\n' +
+                                '<a class="kkkk" onclick="cccc(' + info.goodId + ')" bb="' + info.goodId + '"  style="color: green">兑换</a>' +
+                                //                                '                        <button   class="mui-btn mui-btn-numbox-minus" type="button"></button>\n' +
+                                //                                '                        <input bb="' + info.goodId + '" productName="' + info.goodName + '" jifen="' + info.dhIntegral + '" count="0" class="mui-input-numbox" value="0" type="number" readonly="readonly">\n' +
+                                //                                '                        <button class="mui-btn mui-btn-numbox-plus" type="button"></button>\n' +
                                 '                    </div>\n' +
                                 '                </li>'
                         }
@@ -369,6 +498,32 @@
             }
         })
     }
+
+    function cccc(id) {
+        $.ajax({
+            type: "post",
+            url: "/person/change",
+            async: true, // 异步请求
+            cache: false, // 设置为 false 将不缓存此页面
+            dataType: 'json', // 返回对象
+            data: {
+                productId: id
+            },
+            success: function (data) {
+                console.log(data);
+                if (data != null && data.code == 0) {
+                    alert("兑换成功")
+                } else {
+                    alert(data.msg)
+                }
+            },
+            error: function (data) {
+                // 请求失败函数
+                console.log(data);
+            }
+        })
+    }
+
 </script>
 </body>
 
