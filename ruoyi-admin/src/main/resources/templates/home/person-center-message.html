@@ -33,35 +33,79 @@
 		   	            <lable>头像</lable> 
 		   	            <img id="img" th:src="@{/home/img/logo1.jpg}"/>
 		   	        </li>
+					<li class="mui-table-view-cell">
+						<lable>登录名</lable>
+						<input id="loginName" type="text" placeholder="" class="input" th:value="${session.USER.loginName}"/>
+					</li>
 		   	        <li class="mui-table-view-cell">
-		   	           	<lable>名称</lable> 
-		   	           	<input type="text" placeholder="" class="input" value="星小宇"/>
+		   	           	<lable>姓名</lable>
+		   	           	<input id="userName" type="text" placeholder="" class="input" th:value="${session.USER.userName}"/>
 		   	        </li>
 		   	        <li class="mui-table-view-cell ">
 		   	        		<lable>性别</lable> 
 		   	           	<!--<input id="sex"  type="text" disabled="true" class="input" value="男"/>-->
-		   	           	<select dir="rtl" style="width: 80%;float: right;margin: 0px;padding: 0px;">
-		   	           		<option value="男">男</option>
-		   	           		<option value="女">女</option>
+		   	           	<select id="sexx" dir="rtl"  style="width: 80%;float: right;margin: 0px;padding: 0px;">
+		   	           		<option th:selected="${session.USER.sex=='0'}" value="0">男</option>
+		   	           		<option th:selected="${session.USER.sex=='1'}" value="1">女</option>
 		   	           	</select>
 		   	        </li>
+					<li class="mui-table-view-cell">
+						<lable>手机号</lable>
+						<input id="phone" type="text" placeholder="" class="input" th:value="${session.USER.phonenumber}"/>
+					</li>
+					<li class="mui-table-view-cell">
+						<lable>邮箱</lable>
+						<input id="email" type="text" placeholder="" class="input" th:value="${session.USER.email}"/>
+					</li>
 		   	        
 		   	    </ul>
 		   	    <ul class="mui-table-view" style="margin-top: 15px;">
 		   	        
 		   	       <li class="mui-table-view-cell">
-		   	           	<lable>会员卡号</lable> 
-		   	           	<input id="sex"  type="text" disabled="true" class="input" value="14369707"/>
+		   	           	<lable>会员卡</lable>
+		   	           	<input id="sex" th:value="${session.USER.dept.deptName}"  type="text" disabled="true" class="input" value="14369707"/>
 		   	        </li>
 		   	        <li class="mui-table-view-cell">
 		   	           	<lable>入会时间</lable> 
-		   	           	<input id="time"  type="text" disabled="true" class="input" value="2021-05-04"/>
+		   	           	<input id="time" th:value="${session.USER.createTime}"  type="text" disabled="true" class="input"/>
 		   	        </li>
 		   	    </ul>
 			</div>
-			<button type="button" class="mui-btn mui-btn-danger mui-btn-block" style="margin: 50px auto;width: 70%;padding: 5px;">保存</button>
+			<button type="button" onclick="savePerson()" class="mui-btn mui-btn-danger mui-btn-block" style="margin: 50px auto;width: 70%;padding: 5px;">保存</button>
 		</div>
 		<script th:src="@{/home/js/mui.min.js}"></script>
+		<script type="text/javascript" th:src="@{/home/js/jquery-2.1.4.min.js}"></script>
+		<script>
+			function savePerson() {
+                $.ajax({
+                    type: "post",
+                    url: "/person/savePerson",
+                    async: true, // 异步请求
+                    cache: false, // 设置为 false 将不缓存此页面
+                    dataType: 'json', // 返回对象
+					data:{
+                        loginName: $("#loginName").val(),
+                        userName: $("#userName").val(),
+                        email: $("#email").val(),
+                        phonenumber: $("#phone").val(),
+                        sex: $("#sexx").val()
+					},
+                    success: function (data) {
+                        console.log(data);
+                        if (data != null && data.code == 0) {
+                            alert("保存成功！")
+                            window.location.href = '/person/personCenter'
+                        } else {
+                            alert(data.msg)
+                        }
+                    },
+                    error: function (data) {
+                        // 请求失败函数
+                        console.log(data);
+                    }
+                })
+            }
+		</script>
 	</body>
 
 </html>

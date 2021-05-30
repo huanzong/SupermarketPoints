@@ -107,6 +107,26 @@ public class PersonController extends BaseController {
         return getDataTable(list);
     }
 
+
+
+    /**
+     * 保存个人信息
+     */
+    @PostMapping("/savePerson")
+    @ResponseBody
+    public AjaxResult savePerson(SysUser sysUser,HttpServletRequest request) {
+
+        SysUser sysUser1 = (SysUser) request.getSession().getAttribute("USER");
+        if (null == sysUser1) {
+            return AjaxResult.error("请登录后操作！");
+        }
+        sysUser.setUserId(sysUser1.getUserId());
+        userService.updateUserInfo(sysUser);
+        SysUser sysUser2 = userService.selectUserById(sysUser1.getUserId());
+        request.getSession().setAttribute("USER", sysUser2);
+        return toAjax(1);
+    }
+
     /**
      * 查询充值记录列表
      */
