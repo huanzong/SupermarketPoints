@@ -33,30 +33,66 @@
             <img th:src="@{/home/img/Edit_Yes_64px_507681_easyicon.net.png}"/>
             <h4>交易明细：</h4>
         </div>
-        <ul>
-            <li>
-                <img th:src="@{/home/img/star.png}"/>
-                <span>会员充值</span>
-                <p>2021-05-01 12:48:11</p>
-                <b>+50.00</b>
-            </li>
+        <ul id="chongzhi">
             <!--<li>-->
-                <!--<img src="img/food.png"/>-->
-                <!--<span>微信支付</span>-->
-                <!--<p>2017-08-9 12:48:11</p>-->
-                <!--<b class="color-red">-50.00</b>-->
+            <!--<img th:src="@{/home/img/star.png}"/>-->
+            <!--<span>会员充值</span>-->
+            <!--<p>2021-05-01 12:48:11</p>-->
+            <!--<b>+50.00</b>-->
             <!--</li>-->
-            <li>
-                <img th:src="@{/home/img/star.png}"/>
-                <span>会员充值</span>
-                <p>2021-05-01 12:48:11</p>
-                <b>+50.00</b>
-            </li>
+            <!--<li>-->
+            <!--<img src="img/food.png"/>-->
+            <!--<span>微信支付</span>-->
+            <!--<p>2017-08-9 12:48:11</p>-->
+            <!--<b class="color-red">-50.00</b>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<img th:src="@{/home/img/star.png}"/>-->
+            <!--<span>会员充值</span>-->
+            <!--<p>2021-05-01 12:48:11</p>-->
+            <!--<b>+50.00</b>-->
+            <!--</li>-->
         </ul>
 
     </div>
 </div>
 <script th:src="@{/home/js/mui.min.js}"></script>
+<script type="text/javascript" th:src="@{/home/js/jquery-2.1.4.min.js}"></script>
+<script>
+    $(function () {
+        $.ajax({
+            type: "post",
+            url: "/person/rechargeList",
+            async: true, // 异步请求
+            cache: false, // 设置为 false 将不缓存此页面
+            dataType: 'json', // 返回对象
+            success: function (data) {
+                console.log(data);
+                if (data != null && data.code == 0) {
+                    var html = '';
+                    for (var i = 0; i < data.rows.length; i++) {
+                        var info = data.rows[i];
+                        html += '<li>\n' +
+                            '                <img src="/home/img/star.png"/>\n' +
+                            '                <span>会员充值</span>\n' +
+                            '                <p>' + info.createTime + '</p>\n' +
+                            '                <b>+' + info.money + '.00</b>\n' +
+                            '            </li>'
+                    }
+                    $("#chongzhi").append(html)
+                } else {
+                    alert(data)
+                }
+            },
+            error: function (data) {
+                // 请求失败函数
+                console.log(data);
+            }
+        })
+    })
+
+
+</script>
 </body>
 
 </html>
