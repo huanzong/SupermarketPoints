@@ -117,6 +117,18 @@ public class PersonController {
         return "home/payment";
     }
 
+    /**
+     * 支付成功
+     *
+     * @param mmap
+     * @return
+     */
+    @GetMapping("/paymentSuccess")
+    public String paymentSuccess(ModelMap mmap) {
+
+        return "home/payment-success";
+    }
+
 
 
 

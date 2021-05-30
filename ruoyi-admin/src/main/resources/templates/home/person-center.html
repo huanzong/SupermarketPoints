@@ -41,7 +41,7 @@
             <span>余额</span>
         </div>
         <div class="go-payment">
-            <a href="payment.html">
+            <a href="payment">
                 <button type="button" class="mui-btn mui-btn-danger">
                     去充值
                 </button>
@@ -54,7 +54,7 @@
             <span>积分</span>
         </div>
         <div class="go-payment">
-            <a href="payment.html">
+            <a onclick="qiandao()" href="javascript:;">
                 <button type="button" class="mui-btn mui-btn-success">
                     签到
                 </button>
@@ -85,6 +85,11 @@
     </div>
 </div>
 <script th:src="@{/home/js/mui.min.js}"></script>
+<script>
+    function qiandao() {
+        alert("签到成功！")
+    }
+</script>
 </body>
 
 </html>

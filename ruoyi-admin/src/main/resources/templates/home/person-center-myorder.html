@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="stylesheet" type="text/css" href="css/icons-extra.css"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/home/css/icons-extra.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/home/css/style.css}"/>
     <!--标准mui.css-->
-    <link rel="stylesheet" href="css/mui.css">
+    <link rel="stylesheet" th:href="@{/home/css/mui.css}">
     <style>
         .mui-card .mui-control-content {
             padding: 10px;
@@ -23,11 +23,11 @@
 <body>
 <header class="mui-bar mui-bar-nav">
     <a href="choiceMenus" class=" mui-icon  mui-pull-left title-left">
-        <img src="img/AAA.png" width="100px" height="32px" style="margin-top: 6px;">
+        <img th:src="@{/home/img/AAA.png}" width="100px" height="32px" style="margin-top: 6px;">
     </a>
     <h1 class="mui-title">我的订单</h1>
     <a href="personCenter" class="mui-icon  mui-pull-right title-right" id="btn1">
-        <img src="img/个人中心.png" width="60px" height="32px" style="margin-top: 6px;">
+        <img th:src="@{/home/img/个人中心.png}" width="60px" height="32px" style="margin-top: 6px;">
     </a>
 </header>
 <div class="mui-content">
@@ -197,7 +197,7 @@
     </div>
 
 </div>
-<script src="js/mui.min.js"></script>
+<script th:src="@{/home/js/mui.min.js}"></script>
 <script>
 
     (function ($) {
