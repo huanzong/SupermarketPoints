@@ -46,6 +46,18 @@ public class HomeController {
     }
 
     /**
+     * 留言页面
+     *
+     * @param mmap
+     * @return
+     */
+    @GetMapping("/liuyan")
+    public String liuyan(ModelMap mmap) {
+
+        return "home/liuyan";
+    }
+
+    /**
      * 充值记录
      *
      * @param mmap

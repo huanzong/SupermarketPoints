@@ -81,16 +81,23 @@
                     <span>充值记录</span>
                 </a>
             </li>
+            <li class="mui-table-view-cell mui-media">
+                <a href="liuyan" class="mui-navigate-right">
+                    <img class="mui-media-object mui-pull-left" th:src="@{/home/img/加.png}">
+                    <span>留言管理</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
 <script th:src="@{/home/js/mui.min.js}"></script>
 <script type="text/javascript" th:src="@{/home/js/jquery-2.1.4.min.js}"></script>
 <script>
-
+    var kkk = 0;
     $(function () {
         var aa = $("#shengyu").text();
-        if (aa != null && aa != "") {
+        if (aa != null && aa != "" && kkk == 0) {
+            kkk = 1;
             alert("尊敬的用户，您还有" + aa + "积分，请及时兑换商品！")
         }
     })
@@ -119,6 +126,8 @@
         })
 
     }
+
+
 </script>
 </body>
 

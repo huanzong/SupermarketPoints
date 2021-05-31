@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<style type="text/css">
+
+</style>
+<head>
+    <meta charset="utf-8">
+    <title>提交留言</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!--标准mui.css-->
+    <link th:href="@{/home/css/mui.css}" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/home/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/home/css/icons-extra.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/home/css/mui.picker.min.css}"/>
+</head>
+
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a href="personCenter" class=" mui-icon mui-icon-left-nav mui-pull-left">
+    </a>
+    <h1 class="mui-title">留言提交</h1>
+    <a href="###" onclick="cccc()" class="   mui-pull-right title-baocun">
+        保存
+    </a>
+</header>
+<div class="mui-content">
+    <div class="order-takeout-arrive">
+        <form class="mui-input-group">
+
+            <textarea id="liuyan" type="text" class="mui-input-clear" placeholder="请填写留言信息"></textarea>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/home/js/jquery-2.1.4.min.js}"></script>
+<script th:src="@{/home/js/mui.min.js}"></script>
+<script th:src="@{/home/js/mui.picker.min.js}" type="text/javascript" charset="utf-8"></script>
+<script>
+    (function ($) {
+        $.init();
+        var ss2 = $('#span2')[0];
+        var result = $('#result')[0];
+        var btns2 = $('.btn2');
+        btns2.each(function (i, btn) {
+            btn.addEventListener('tap', function () {
+                var optionsJson = this.getAttribute('data-options') || '{}';
+                var options = JSON.parse(optionsJson);
+                var id = this.getAttribute('id');
+                var picker = new $.DtPicker(options);
+                picker.show(function (rs) {
+                    ss2.innerText = rs.text;
+                    picker.dispose();
+                });
+            }, false);
+        });
+    })(mui);
+
+</script>
+<script>
+    function cccc() {
+
+        var noticeContent = $("#liuyan").val();
+        if (noticeContent == null || noticeContent == "") {
+            alert("请填写留言信息！")
+            return false;
+        }
+        $.ajax({
+            type: "post",
+            url: "/person/addLiuYan",
+            async: true, // 异步请求
+            cache: false, // 设置为 false 将不缓存此页面
+            dataType: 'json', // 返回对象
+            data: {
+                noticeContent: noticeContent
+            },
+            success: function (data) {
+                console.log(data);
+                if (data != null && data.code == 0) {
+                    alert("留言成功")
+                    window.location.href = '/person/personCenter';
+                } else {
+                    alert(data.msg)
+                }
+            },
+            error: function (data) {
+                // 请求失败函数
+                console.log(data);
+            }
+        })
+    }
+</script>
+</body>
+
+</html>

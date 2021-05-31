@@ -13,8 +13,10 @@ import com.ruoyi.integral.service.IIntegralGoodsService;
 import com.ruoyi.integral.service.IIntegralRecordService;
 import com.ruoyi.integral.service.ISysRechargeService;
 import com.ruoyi.integral.service.ISysSignInService;
+import com.ruoyi.system.domain.SysNotice;
 import com.ruoyi.system.domain.SysSignIn;
 import com.ruoyi.system.domain.SysUser;
+import com.ruoyi.system.service.ISysNoticeService;
 import com.ruoyi.system.service.ISysUserService;
 import com.ruoyi.web.core.base.BaseController;
 import org.apache.shiro.crypto.hash.Md5Hash;
@@ -49,6 +51,9 @@ public class PersonController extends BaseController {
 
     @Autowired
     private IIntegralRecordService iIntegralRecordService;
+
+    @Autowired
+    private ISysNoticeService noticeService;
 
 
     @PostMapping(value = "login")
@@ -97,6 +102,19 @@ public class PersonController extends BaseController {
     }
 
     /**
+     * 留言页面
+     *
+     * @param mmap
+     * @return
+     */
+    @GetMapping("/liuyan")
+    public String liuyan(ModelMap mmap) {
+
+        return "home/liuyan";
+    }
+
+
+    /**
      * 查询签到记录列表
      */
     @PostMapping("/signList")
@@ -115,6 +133,25 @@ public class PersonController extends BaseController {
         List<SysSignIn> list = sysSignInService.selectSysSignInList(sysSignIn);
         return getDataTable(list);
     }
+
+
+    /**
+     * 新增保存留言
+     */
+    @PostMapping("/addLiuYan")
+    @ResponseBody
+    public AjaxResult addSave(SysNotice notice, HttpServletRequest request) {
+        SysUser sysUser = (SysUser) request.getSession().getAttribute("USER");
+        if (null == sysUser) {
+            return AjaxResult.error("用户未登录！");
+        }
+        notice.setCreateBy(sysUser.getLoginName());
+        notice.setStatus("0");
+        notice.setNoticeTitle(sysUser.getUserName() + "提交的用户留言");
+        notice.setNoticeType("1");
+        return toAjax(noticeService.insertNotice(notice));
+    }
+
 
     /**
      * 兑换记录查询
@@ -150,7 +187,7 @@ public class PersonController extends BaseController {
         if (null == integralGoods) {
             return AjaxResult.error(500, "失败");
         }
-        if(integralGoods.getDhIntegral()>sysUser.getJiChuIntegral()){
+        if (integralGoods.getDhIntegral() > sysUser.getJiChuIntegral()) {
             return AjaxResult.error(500, "积分不足");
         }
         integralGoods.setGoodKc(integralGoods.getGoodKc() - 1);
